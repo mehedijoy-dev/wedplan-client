@@ -1,10 +1,10 @@
 "use client";
-import { toast } from "sonner";
-import { signOut, useSession } from "@/lib/auth-client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Heart, LayoutDashboard, LogOut, Menu, UserCog } from "lucide-react";
+import { toast } from "sonner";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -16,9 +16,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
+import { signOut, useSession } from "@/lib/auth-client";
 import { cn } from "@/lib/utils";
-
-// Placeholder: Better Auth set up korar por eta useSession() diye replace hobe
 
 const links = [
   { href: "/", label: "Home" },
@@ -44,7 +43,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+      <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Heart className="size-5 fill-primary text-primary" />
@@ -53,8 +52,8 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop links */}
-        <nav className="hidden items-center gap-8 md:flex">
+        {/* Desktop links (always centered) */}
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex">
           {links.map((link) => (
             <Link
               key={link.href}
@@ -84,6 +83,9 @@ export default function Navbar() {
               <DropdownMenuContent align="end" className="w-56">
                 <div className="px-2 py-1.5">
                   <p className="truncate text-sm font-medium">{user.name}</p>
+                  <p className="truncate text-xs text-muted-foreground">
+                    {user.email}
+                  </p>
                 </div>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => router.push("/dashboard")}>
@@ -147,7 +149,34 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            {!user && (
+
+            {user ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="rounded-md px-3 py-2 text-sm font-medium hover:bg-secondary"
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/dashboard/profile"
+                  onClick={() => setOpen(false)}
+                  className="rounded-md px-3 py-2 text-sm font-medium hover:bg-secondary"
+                >
+                  Profile Settings
+                </Link>
+                <button
+                  onClick={() => {
+                    setOpen(false);
+                    handleLogout();
+                  }}
+                  className="rounded-md px-3 py-2 text-left text-sm font-medium text-destructive hover:bg-secondary"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
               <>
                 <Link
                   href="/sign-in"
