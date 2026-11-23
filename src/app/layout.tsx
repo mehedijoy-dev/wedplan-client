@@ -1,3 +1,6 @@
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import "./globals.css";
@@ -33,7 +36,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         cormorant.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        <div className="flex flex-1 flex-col">{children}</div>
+        <Footer />
+        <Toaster richColors position="top-right" />
+      </body>
     </html>
   );
 }
