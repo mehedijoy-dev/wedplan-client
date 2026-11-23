@@ -1,3 +1,9 @@
+import dns from "node:dns";
+
+// Local e kichu network SRV DNS lookup block kore, tai public DNS use korchi
+if (process.env.NODE_ENV !== "production") {
+  dns.setServers(["8.8.8.8", "1.1.1.1"]);
+}
 import { betterAuth } from "better-auth";
 import { mongodbAdapter } from "better-auth/adapters/mongodb";
 import { jwt } from "better-auth/plugins";
