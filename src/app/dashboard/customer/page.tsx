@@ -1,12 +1,16 @@
+import StatsOverview from "@/components/dashboard/StatsOverview";
+
 export default function CustomerOverview() {
   return (
-    <div className="space-y-2">
-      <h1 className="font-heading text-3xl font-bold text-primary">
-        Customer Overview
-      </h1>
-      <p className="text-muted-foreground">
-        Your booking summary will appear here.
-      </p>
-    </div>
+    <StatsOverview
+      title="Customer Overview"
+      endpoint="/api/bookings/stats"
+      cards={[
+        { key: "totalBookings", label: "Total Booking Requests" },
+        { key: "pendingBookings", label: "Pending Bookings" },
+        { key: "acceptedBookings", label: "Accepted Bookings" },
+        { key: "rejectedBookings", label: "Rejected Bookings" },
+      ]}
+    />
   );
 }
