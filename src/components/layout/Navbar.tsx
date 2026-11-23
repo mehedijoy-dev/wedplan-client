@@ -1,5 +1,6 @@
 "use client";
-
+import { toast } from "sonner";
+import { signOut, useSession } from "@/lib/auth-client";
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,12 +18,7 @@ import {
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
-type NavUser = { name: string; image?: string | null } | null;
-
 // Placeholder: Better Auth set up korar por eta useSession() diye replace hobe
-function useNavUser(): NavUser {
-  return null;
-}
 
 const links = [
   { href: "/", label: "Home" },
@@ -32,15 +28,18 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const user = useNavUser();
+  const { data: session } = useSession();
+  const user = session?.user ?? null;
   const [open, setOpen] = useState(false);
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  const handleLogout = () => {
-    // TODO: Better Auth signOut()
+  const handleLogout = async () => {
+    await signOut();
+    toast.success("Logged out successfully");
     router.push("/");
+    router.refresh();
   };
 
   return (
