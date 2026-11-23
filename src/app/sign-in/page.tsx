@@ -1,5 +1,5 @@
 "use client";
-
+import { getRedirectTarget } from "@/lib/redirect";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -33,7 +33,7 @@ export default function SignInPage() {
         return;
       }
       toast.success("Welcome back!");
-      router.push("/"); // TODO: role-based dashboard redirect
+      router.push(getRedirectTarget());
       router.refresh();
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -45,7 +45,7 @@ export default function SignInPage() {
   async function handleGoogle() {
     const { error } = await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/",
+      callbackURL: getRedirectTarget(),
     });
     if (error) toast.error(error.message ?? "Google sign in failed");
   }

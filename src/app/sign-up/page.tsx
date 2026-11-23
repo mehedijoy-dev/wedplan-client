@@ -1,5 +1,5 @@
 "use client";
-
+import { getRedirectTarget } from "@/lib/redirect";
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -65,7 +65,7 @@ export default function SignUpPage() {
       }
 
       toast.success("Account created successfully!");
-      router.push("/"); // TODO: role-based dashboard redirect
+      router.push(getRedirectTarget());
       router.refresh();
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Something went wrong");
@@ -77,7 +77,7 @@ export default function SignUpPage() {
   async function handleGoogle() {
     const { error } = await authClient.signIn.social({
       provider: "google",
-      callbackURL: "/",
+      callbackURL: getRedirectTarget(),
     });
     if (error) toast.error(error.message ?? "Google sign up failed");
   }
