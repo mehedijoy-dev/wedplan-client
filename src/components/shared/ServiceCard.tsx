@@ -12,7 +12,7 @@ export default function ServiceCard({ service }: { service: Service }) {
     service.vendor?.businessName || service.vendor?.name || "Vendor";
 
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-lg">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border bg-card transition-shadow hover:shadow-lg">
       <div className="aspect-[4/3] overflow-hidden bg-muted">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img

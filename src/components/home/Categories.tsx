@@ -46,7 +46,7 @@ export default function Categories() {
             <FadeIn key={c.name} delay={i * 0.05}>
               <Link
                 href={`/services?category=${encodeURIComponent(c.name)}`}
-                className="group flex items-center gap-4 rounded-2xl border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-md"
+                className="group flex h-full items-center gap-4 rounded-2xl border bg-card p-5 transition-all hover:-translate-y-1 hover:border-primary hover:shadow-md"
               >
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <c.icon className="size-6" />
