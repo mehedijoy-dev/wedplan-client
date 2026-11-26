@@ -84,6 +84,18 @@ export const auth = betterAuth({
           };
         },
       },
+      update: {
+        before: async (userData) => {
+          // Profile update diye role/block/subscription bodlano jabe na
+          const protectedKeys = [
+            "role",
+            "isBlocked",
+            "subscriptionPlan",
+            "subscriptionExpiresAt",
+          ];
+          if (protectedKeys.some((k) => k in userData)) return false;
+        },
+      },
     },
   },
 
