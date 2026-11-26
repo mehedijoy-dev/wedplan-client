@@ -1,13 +1,17 @@
-import { Button } from "@/components/ui/button";
+import Categories from "@/components/home/Categories";
+import FeaturedServices from "@/components/home/FeaturedServices";
+import Hero from "@/components/home/Hero";
+import HowItWorks from "@/components/home/HowItWorks";
+import WhyChoose from "@/components/home/WhyChoose";
 
 export default function Home() {
   return (
-    <main className="flex min-h-[70vh] flex-1 flex-col items-center justify-center gap-6 p-8 text-center">
-      <h1 className="text-5xl font-semibold text-primary">WedPlan</h1>
-      <p className="max-w-md text-muted-foreground">
-        Discover trusted wedding vendors and request bookings in one place.
-      </p>
-      <Button>Explore Wedding Services</Button>
+    <main className="flex-1">
+      <Hero />
+      <FeaturedServices />
+      <Categories />
+      <WhyChoose />
+      <HowItWorks />
     </main>
   );
 }
