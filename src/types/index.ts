@@ -59,3 +59,15 @@ export type Transaction = {
   createdAt: string;
   vendor: { name: string; email: string; businessName: string | null } | null;
 };
+export type AppUser = {
+  _id: string;
+  name: string;
+  email: string;
+  image: string | null;
+  role: "customer" | "vendor" | "admin";
+  isBlocked: boolean;
+  businessName: string | null;
+  subscriptionPlan: string | null;
+  subscriptionExpiresAt: string | null;
+  createdAt: string;
+};
