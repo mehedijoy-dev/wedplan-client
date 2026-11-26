@@ -76,8 +76,16 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t py-4 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} WedPlan. All rights reserved.
+      <div className="flex flex-col items-center justify-between gap-2 border-t px-4 py-4 text-xs text-muted-foreground sm:flex-row sm:px-6">
+        <p>© {new Date().getFullYear()} WedPlan. All rights reserved.</p>
+        <div className="flex gap-4">
+          <Link href="/privacy" className="hover:text-primary">
+            Privacy Policy
+          </Link>
+          <Link href="/terms" className="hover:text-primary">
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </footer>
   );
