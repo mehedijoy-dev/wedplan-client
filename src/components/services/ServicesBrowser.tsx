@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CATEGORIES } from "@/lib/constants";
 import type { Service } from "@/types";
-
+import { API_URL } from "@/lib/config";
 type Result = { services: Service[]; total: number; limit: number };
 
 const selectClass =
@@ -38,9 +38,7 @@ export default function ServicesBrowser() {
         if (category !== "all") q.set("category", category);
         if (location) q.set("location", location);
 
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/api/services?${q.toString()}`,
-        );
+        const res = await fetch(`${API_URL}/api/services?${q.toString()}`);
         const json = await res.json();
         if (!res.ok) throw new Error(json.message || "Failed to load services");
         if (!cancelled) setData(json);

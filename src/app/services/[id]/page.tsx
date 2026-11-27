@@ -15,7 +15,7 @@ import { useSession } from "@/lib/auth-client";
 import { formatPrice } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Service } from "@/types";
-
+import { API_URL } from "@/lib/config";
 export default function ServiceDetailsPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -34,7 +34,7 @@ export default function ServiceDetailsPage() {
       router.replace(`/sign-in?redirect=/services/${id}`);
       return;
     }
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/services/${id}`)
+    fetch(`${API_URL}/api/services/${id}`)
       .then(async (res) => {
         const json = await res.json().catch(() => ({}));
         if (!res.ok) throw new Error(json.message || "Failed to load service");

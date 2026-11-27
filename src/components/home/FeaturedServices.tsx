@@ -9,12 +9,12 @@ import PageLoader from "@/components/shared/PageLoader";
 import ServiceCard from "@/components/shared/ServiceCard";
 import { buttonVariants } from "@/components/ui/button";
 import type { Service } from "@/types";
-
+import { API_URL } from "@/lib/config";
 export default function FeaturedServices() {
   const [services, setServices] = useState<Service[] | null>(null);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/services?limit=6&sort=newest`)
+    fetch(`${API_URL}/api/services?limit=6&sort=newest`)
       .then((r) => r.json())
       .then((d) => setServices(d.services ?? []))
       .catch(() => setServices([]));
