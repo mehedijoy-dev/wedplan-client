@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WedPlan: Wedding Planning Platform
 
-## Getting Started
+WedPlan is a role-based wedding planning platform. Customers discover wedding services and request bookings, vendors publish and manage their services and booking requests, and admins moderate users, services and platform transactions.
 
-First, run the development server:
+## Live Website and Repositories
+
+|                       | Link                                                                                               |
+| --------------------- | -------------------------------------------------------------------------------------------------- |
+| **Live Website**      | [https://wedplan-client-kappa.vercel.app](https://wedplan-client-kappa.vercel.app)                 |
+| **Live API**          | [https://wedplan-server-tawny.vercel.app](https://wedplan-server-tawny.vercel.app)                 |
+| **Client Repository** | [https://github.com/mehedijoy-dev/wedplan-client](https://github.com/mehedijoy-dev/wedplan-client) |
+| **Server Repository** | [https://github.com/mehedijoy-dev/wedplan-server](https://github.com/mehedijoy-dev/wedplan-server) |
+
+## Important Features
+
+- Role-based authentication (Customer, Vendor, Admin) with Better Auth: email/password and Google login
+- Admin accounts cannot be created through public registration
+- Browse approved and active services with search by name, category and location filters, and price sorting (ascending and descending)
+- Protected service details page with an image gallery and a booking request form
+- Booking system with duplicate request prevention, vendor accept/reject, and customer cancel for pending requests only
+- Vendor dashboard: overview, add/edit/pause/delete services, booking requests, subscription and profile settings
+- Free plan limited to 3 active services, Premium for unlimited services through Stripe Checkout (test mode)
+- Premium is activated only after a verified Stripe webhook event, never from the frontend redirect
+- Admin dashboard: overview, manage users (search, role filter, block/unblock), approve/reject/delete services, read-only transactions
+- Customer dashboard: overview and booking management
+- Server-side JWT verification and role checks on all protected APIs; blocked users cannot access protected features
+- Image uploads (profile and service images) through ImgBB
+- Fully responsive design, toast notifications, loading and empty states, custom 404 page and Motion animations on the home page
+
+## Technology Stack
+
+- **Client:** Next.js (App Router), TypeScript, Tailwind CSS, ShadCN UI, Motion (Framer Motion), Better Auth
+- **Server:** Node.js, Express.js, MongoDB, JWT verification with jose
+- **Payments:** Stripe Checkout (test mode) and Stripe Webhooks
+- **Image Hosting:** ImgBB
+- **Deployment:** Vercel
+
+## Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [https://github.com/mehedijoy-dev/wedplan-client.git](https://github.com/mehedijoy-dev/wedplan-client.git)
+cd wedplan-client
+npm install
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
