@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { Heart, LayoutDashboard, LogOut, Menu, UserCog } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, UserCog } from "lucide-react";
 import { toast } from "sonner";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -44,10 +44,25 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur">
       <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <Heart className="size-5 fill-primary text-primary" />
-          <span className="font-heading text-2xl font-bold text-primary">
+        {/* Bespoke Brand Logo */}
+        <Link href="/" className="group flex items-center gap-2.5">
+          <div className="flex size-9 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform duration-300 group-hover:scale-105">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="size-5"
+            >
+              <circle cx="9" cy="13" r="6" />
+              <circle cx="15" cy="11" r="6" />
+              <path d="M15 5l1.5-2.5L18 5" />
+            </svg>
+          </div>
+          <span className="font-serif text-2xl font-bold tracking-tight text-primary">
             WedPlan
           </span>
         </Link>
@@ -132,7 +147,7 @@ export default function Navbar() {
       {/* Mobile menu */}
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="right" className="w-72">
-          <SheetTitle className="px-4 pt-4 font-heading text-2xl text-primary">
+          <SheetTitle className="px-4 pt-4 font-serif text-2xl font-bold text-primary">
             WedPlan
           </SheetTitle>
           <nav className="flex flex-col gap-1 px-4">

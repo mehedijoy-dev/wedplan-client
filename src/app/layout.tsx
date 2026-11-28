@@ -2,19 +2,19 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const dmSans = DM_Sans({
+const outfit = Outfit({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
-const cormorant = Cormorant_Garamond({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-  variable: "--font-cormorant",
+  variable: "--font-serif",
 });
 
 export const metadata: Metadata = {
@@ -26,19 +26,23 @@ export const metadata: Metadata = {
     "Discover trusted wedding vendors, compare services and request bookings, all in one place.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
       className={cn(
-        "h-full antialiased font-sans",
-        dmSans.variable,
-        cormorant.variable,
+        "h-full antialiased font-sans scroll-smooth",
+        outfit.variable,
+        playfair.variable,
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col bg-background text-foreground selection:bg-primary/20">
         <Navbar />
-        <div className="flex flex-1 flex-col">{children}</div>
+        <main className="flex flex-1 flex-col">{children}</main>
         <Footer />
         <Toaster richColors position="top-right" />
       </body>
